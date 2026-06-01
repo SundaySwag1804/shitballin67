@@ -35,6 +35,19 @@
             font-size: 1.4rem;
             color: #ff00aa;
         }
+        .clock {
+            margin-top: 30px;
+            font-size: 1.8rem;
+            color: #00ff88;
+            text-shadow: 0 0 15px #00ff88;
+            letter-spacing: 0.05em;
+        }
+        .clock-date {
+            font-size: 1rem;
+            color: #ff00aa;
+            margin-top: 6px;
+            opacity: 0.85;
+        }
     </style>
 </head>
 <body>
@@ -42,6 +55,25 @@
         <div class="main">6 7</div>
         <div class="subtitle">SHITBALLIN</div>
         <div class="tag">EST. 2026 🔥</div>
+        <div class="clock" id="clock">--:--:--</div>
+        <div class="clock-date" id="clock-date">---</div>
     </div>
+
+    <script>
+        function updateClock() {
+            const now = new Date();
+            const time = now.toLocaleTimeString('en-US', { hour12: true });
+            const date = now.toLocaleDateString('en-US', {
+                weekday: 'long',
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            });
+            document.getElementById('clock').textContent = time;
+            document.getElementById('clock-date').textContent = date;
+        }
+        updateClock();
+        setInterval(updateClock, 1000);
+    </script>
 </body>
 </html>
